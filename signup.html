@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel = "stylesheet" href = "css/bootstrap.min.css">
+	<link rel = "stylesheet" type = "text/css" href = "css/styles_register.css">
+<!-- 	<script type = "text/javascript" src = "mscript.js"></script> -->
+	<script type = "text/javascript" src = "js/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+<div class = "container">
+    <div class = "row">
+        <div>
+            <div class = "panel panel-default">
+                <div class = "panel-heading"> <strong class = "">Register</strong>
+
+                </div>
+                <div class = "panel-body">
+                    <form class = "form-horizontal" role = "form">
+                        <div class = "form-group">
+                            <label for = "userName" class = "col-sm-3 control-label">Pick a username</label>
+                            <div class = "col-sm-9">
+                                <input type = "text" class = "form-control" id = "userName" placeholder = "Username" required = "">
+                            </div>
+                        </div>
+                        <div class = "form-group">
+                            <label for = "inputEmail" class = "col-sm-3 control-label">Enter a Valid Email-ID</label>
+                            <div class = "col-sm-9">
+                                <input type = "Email" class = "form-control" id = "inputEmail" placeholder = "name@example.com" required = "">
+                            </div>
+                        </div>
+                        <div class = "form-group">
+                            <label for = "inputPassword" class = "col-sm-3 control-label">Enter a Password</label>
+                            <div class = "col-sm-9">
+                                <input type = "password" class = "form-control" id = "inputPassword" placeholder = "Should contain 6-13 characters and a number" required = "">
+                            </div>
+                        </div>
+                        <div class = "form-group">
+                            <label for = "retypePassword" class = "col-sm-3 control-label">Re-type your Password</label>
+                            <div class = "col-sm-9">
+                                <input type = "password" class = "form-control" id = "retypePassword" placeholder = "Re-type the Password" required = "">
+                            </div>
+                        </div>
+                        <div class = "form-group">
+                            <label for = "phoneNumber" class = "col-sm-3 control-label">Enter Phone no.</label>
+                            <div class = "col-sm-9">
+                                <input type = "number" class = "form-control" id = "phoneNumber" placeholder = "" required = "">
+                            </div>
+                        </div>
+
+                        </div>
+                        <div class = "form-group last">
+                            <div class = "col-sm-offset-3 col-sm-9">
+                                <button id  =  "signup" type = "submit" class = "btn btn-success btn-sm">Signup!</button>
+                                <button id  =  "reset" type = "reset" class = "btn btn-default btn-sm">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+</div>
+<script type = "text/javascript">
+function printTerms(gg){
+	$("#inputPassword").val("") ;
+    $("#retypePassword").val("") ;
+};
+
+function successfulLogin(){
+    window.alert("Successfully Registered");
+}
+
+$("#reset").click(function(){
+	$("#userName").val() = "";
+	$("#inputEmail").val() = "";
+	$("#inputPassword").val() = "";
+	$("#retypePassword").val() = "";
+});
+
+$('form').submit(function (e) {
+    e.preventDefault();
+    if($("#inputPassword").val() != $("#retypePassword").val()){
+        window.alert("Passwords didn't match");
+        printTerms();
+    }
+    else{
+        $.post('/signup-api', { username: $('#userName').val(), password: $('#inputPassword').val(), email:$("#inputEmail").val(), phoneNumber: $('#phoneNumber').val() });
+    }
+});
+
+
+</script>
+</body>
+</html>
