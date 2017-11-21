@@ -149,8 +149,10 @@ app.post("/signup-api",function(req,res){
 
 app.post("/login-api", function(req,res){
     sess = req.session;
+	console.log("in login");
     con.query("SELECT * FROM users WHERE emailid = \"" + req.body.email + "\" AND password = \"" + req.body.password + "\" ORDER BY `userid` ASC", function(err,result,fields){
-        if(result.length > 0) {
+        console.log(result);
+		if(result.length > 0) {
             sess.email = req.body.email;
             sess.auth = result[0].autorization;
             console.log("login " + sess.email + " " + sess.auth);
