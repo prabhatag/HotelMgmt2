@@ -14,8 +14,10 @@ var con = mysql.createConnection({
   password: "root",
   database: "restaurantmanagement"
 });
-con.connect();
-
+con.connect( function(err){
+    if (err) throw err;
+    console.log("Connected!");
+});
 app.use(session({secret: 'randomsecret'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
