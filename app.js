@@ -19,7 +19,7 @@ con.connect( function(err){
     console.log("Connected!");
 	con.query("SELECT * FROM users", function(err,result,fields){
 		console.log(result);
-	}
+	});
 });
 app.use(session({secret: 'randomsecret'}));
 app.use(bodyParser.json());
