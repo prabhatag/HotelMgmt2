@@ -9,7 +9,8 @@ var mysql = require('mysql');
 var app = express();
 
 var con = mysql.createConnection({
-  host: "35.200.142.142 ",
+  host: "35.200.142.142",
+  port: "80",
   user: "root",
   password: "root",
   database: "restaurantmanagement"
@@ -17,16 +18,14 @@ var con = mysql.createConnection({
 con.connect( function(err){
     if (err) throw err;
     console.log("Connected!");
-	con.query("SELECT * FROM users", function(err,result,fields){
-		console.log(result);
-	});
 });
+
 app.use(session({secret: 'randomsecret'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(function(req,res,next){
-    //console.log(`${req.method} request for '${req.url}' - $(JSON.stringify(req.body)}`);
+    console.log(`${req.method} request for '${req.url}' - $(JSON.stringify(req.body)}`);
     next();
 });
 
@@ -151,11 +150,11 @@ app.post("/signup-api",function(req,res){
 });
 
 app.post("/login-api", function(req,res){
-    console.log("in login");
-	sess = req.session;
+    sess = req.session;
+    console.log("im in login");
     con.query("SELECT * FROM users WHERE emailid = \"" + req.body.email + "\" AND password = \"" + req.body.password + "\" ORDER BY `userid` ASC", function(err,result,fields){
         console.log(result);
-		if(result.length > 0) {
+        if(result.length > 0) {
             sess.email = req.body.email;
             sess.auth = result[0].autorization;
             console.log("login " + sess.email + " " + sess.auth);

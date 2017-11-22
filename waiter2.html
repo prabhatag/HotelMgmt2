@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type = "text/css" href="css/styles_wait2.css">
 	<title></title>
 </head>
 
@@ -9,7 +11,7 @@
 <form action="/submit-order/" target="du" >
 	<p><b>Enter user id</b></p>	
 	<input type="number" id="user_id" name="user_id" placeholder="user_id">
-	<input type="button" id="btn_user_id" name="btn_user_id">
+	<input type="button" id="btn_user_id" class="btn" name="btn_user_id" >
 
 
 	<p><b>Enetr table no.</b></p>
@@ -25,7 +27,7 @@
 		<option value="9">9</option>
 		<option value="10">10</option>
 	</select>
-	<table id="menu_items">
+	<table id="menu_items" class="table table-hover">
 		<tr>
 			<th>Name</th>
 			<th>Cost</th>
@@ -33,16 +35,16 @@
 		</tr>
 		
 	</table>
-	<input type="submit" name="submit" value="Submit" formmethod="post">
+	<input type="submit" name="submit" class="btn" value="Submit" formmethod="post">
 </form>
 <div id="check">
 	<p><b>Check out:</b></p>
 	<input type="number" id="check_userId" placeholder="check_userId" />
 	<input type="number" id="check_tableNo" placeholder="check_tableNo"/>
-	<input type="button" value="checkout" id="btn_check"/>
+	<input type="button" value="checkout" id="btn_check" class="btn" />
 </div>
 <div id="bill">
-	<table id="table_bill">
+	<table id="table_bill" class="table table-hover">
 		<tr>
 			<th>Item name</th>
 			<th>Quantity</th>
@@ -51,6 +53,8 @@
 		</tr>
 	</table>	
 </div>
+
+<br><br>
 <iframe src="" id = "du"></iframe>
 </body>
 <script type="text/javascript">
