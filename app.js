@@ -10,7 +10,6 @@ var app = express();
 
 var con = mysql.createConnection({
   host: "35.200.142.142",
-  port: "80",
   user: "root",
   password: "root",
   database: "restaurantmanagement"
