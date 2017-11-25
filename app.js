@@ -8,24 +8,24 @@ var mysql = require('mysql');
 
 var app = express();
 
-var con = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "",
-	database: "Restaurantmanagement"
-});
-con.connect();
+//var con = mysql.createConnection({
+//	host: "localhost",
+//	user: "root",
+//	password: "",
+//	database: "Restaurantmanagement"
+//});
+//con.connect();
 
-// var con = mysql.createConnection({
-//   host: "35.200.142.142",
-//   user: "root",
-//   password: "root",
-//   database: "restaurantmanagement"
-// });
-// con.connect( function(err){
-//     if (err) throw err;
-//     console.log("Connected!");
-// });
+ var con = mysql.createConnection({
+   host: "35.200.132.15",
+   user: "root",
+   password: "root",
+   database: "restaurantmanagement"
+});
+con.connect( function(err){
+    if (err) throw err;
+    console.log("Connected!");
+});
 
 app.use(session({secret: 'randomsecret'}));
 app.use(bodyParser.json());
