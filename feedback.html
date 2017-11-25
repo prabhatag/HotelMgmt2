@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/styles_chiefq.css">
+  <link rel="stylesheet" href="css/styles_feedback.css">
   <title>chief Queue</title>
 </head>
 <body>
@@ -31,11 +31,14 @@
   <br>
   <div class="jumbotron" id="Jumbo1">
     <div class = "center container">
-     <h1 class="heading"><b>The chief Queue</b></h1>
+     <h1 class="heading"><b>Feedback</b></h1>
    </div>
   </div>
 <div class="container" id="Jumbo2">
 
+<input type="number" class="form-control" id ="uid" name="Userid" placeholder="Userid">
+<textarea class="form-control" rows="3" id="feedback" placeholder="Feedback"></textarea>
+<input type="button" name="submit" value="submit" class="btn btn-success" id="submit-f">
 </div>	
 <dl></dl>
 
@@ -45,47 +48,12 @@
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function () {
-
-    $.getJSON('/queue-api/', printTerms);
-    $('form').submit(function (e) {
-      e.preventDefault();
-      $.post('/queue-api', {term: $('#term').val(), defined: $('#defined').val()}, printTerms);
-      this.reset();
+	$("#submit-f").click(function(){
+    $.get("/feedback-api/"+$("#uid").val()+"/"+$("#feedback").val(), function(data,status){
+        window.alert("Feedback Successfully Submitted");
+        window.open("/index.html","_self")
     });
-
   });
 
-  function reload(){
-    location.reload();
-  }
-
-  function printTerms(terms) {
-    console.log('red');
-    $('#Jumbo2').empty();
-    $.each(terms, function () {
-      var $div = $("<div>", {id: "fooditem", "class": "container fitem"});
-      $('<dt>').text('Order ID : ' + this["order_id"]).appendTo($div);
-      $('<dd>').text('Food Item : '+ this["item_name"]).appendTo($div);
-      $('<dd>').text(this["e"]).appendTo($div);
-      $div.appendTo($('#Jumbo2'));
-    });
-
-    $('div dt').off('dblclick').dblclick(function() {
-      rs =$(this).text().split(':');
-      $.ajax({
-        url: '/queue-api/' + rs[1],
-        type: 'DELETE',
-        success: reload
-      });
-    });
-  }
-
-  $("#fooditem").mouseover(function () {
-    $(this).css({"background-color":"white","color":"#c45611"})
-  });
-  $("#fooditem").mouseout(function () {
-    $(this).css({"background-color":"#c45611","color":"white"})
-  });
 </script>
 </html>

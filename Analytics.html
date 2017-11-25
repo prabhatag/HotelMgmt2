@@ -15,14 +15,14 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a href="" class="navbar-brand">RESTAURANT MANAGEMENT</a>
+				<a href="/" class="navbar-brand">RESTAURANT MANAGEMENT</a>
 			</div>
 
 			<div class = "collapse navbar-collapse" id = "collapsemenu">
 				<ul class="nav navbar-nav navbar-right ">
 					<li><a href="home.html">Home</a></li>
-					<li><a href="">Aanalytics</a></li>
-					<li><a href="login.html">Logout</a></li>
+					<li><a href="manager.html">Admin</a></li>
+					<li><a id="logout">Logout</a></li>
 				</ul>
 			</div>
 		</div>
@@ -31,6 +31,7 @@
 		<h1>Sales Per day </h1>
 
 	</div>
+  <script src="js/jquery-2.1.4.min.js"></script>
 <script>
 // Mike Bostock "margin conventions"
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
@@ -155,7 +156,11 @@ function draw(data) {
     .attr("height", function(d) { return height - y(d.close); }); // flip the height, because y's domain is bottom up, but SVG renders top down
 
 }
-
+  $("#logout").click(function(){
+    console.log("logging out");
+    $.get("/logout-api");
+    window.open("login.html","_self")
+  });
 </script>
 </body>
 </html>
